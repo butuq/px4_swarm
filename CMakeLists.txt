@@ -207,22 +207,23 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(basic_example src/basic_example.cpp)
+##################Basic Example#############################
+add_executable(basic_example src/basic_example/basic_example.cpp)
 target_link_libraries(basic_example ${catkin_LIBRARIES})
 
-add_executable(basic_example_1 src/basic_example_1.cpp)
+add_executable(basic_example_1 src/basic_example/basic_example_1.cpp)
 target_link_libraries(basic_example_1 ${catkin_LIBRARIES})
 
-add_executable(basic_example_2 src/basic_example_2.cpp)
+add_executable(basic_example_2 src/basic_example/basic_example_2.cpp)
 target_link_libraries(basic_example_2 ${catkin_LIBRARIES})
 
-add_executable(basic_example_3 src/basic_example_3.cpp)
+add_executable(basic_example_3 src/basic_example/basic_example_3.cpp)
 target_link_libraries(basic_example_3 ${catkin_LIBRARIES})
 
-add_executable(basic_example_4 src/basic_example_4.cpp)
+add_executable(basic_example_4 src/basic_example/basic_example_4.cpp)
 target_link_libraries(basic_example_4 ${catkin_LIBRARIES})
 
-add_executable(basic_example_5 src/basic_example_5.cpp)
+add_executable(basic_example_5 src/basic_example/basic_example_5.cpp)
 target_link_libraries(basic_example_5 ${catkin_LIBRARIES})
 
 ##################Swarm Fly 8#############################

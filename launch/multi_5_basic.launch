@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+    <node name="offb_1" pkg="mavros_basics" type="basic_example_1" output="screen"/>
+    <node name="offb_2" pkg="mavros_basics" type="basic_example_2" output="screen"/>
+    <node name="offb_3" pkg="mavros_basics" type="basic_example_3" output="screen"/>
+    <node name="offb_4" pkg="mavros_basics" type="basic_example_4" output="screen"/>
+    <node name="offb_5" pkg="mavros_basics" type="basic_example_5" output="screen"/>
+</launch>

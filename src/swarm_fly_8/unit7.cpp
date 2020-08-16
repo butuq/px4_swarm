@@ -20,14 +20,14 @@
 
 //Stage Parameters
 #define INITIAL_ALTITUDE	3
-#define DELTA_TIME			3.5
+#define DELTA_TIME			3
 
 float x,y,z,theta=0;
 int stage = 1;
 int id = ID;
 int agents = 8;
 int flag = 1;
-bool is_armed = 0;
+double delta_time = DELTA_TIME;
 
 // //Prepare for circle
 // void stage_4()
@@ -57,6 +57,7 @@ bool is_armed = 0;
 //From the ground to initial altitude
 void stage_1()
 {
+	delta_time = DELTA_TIME*1.07;
 	switch(id)
 	{
 		case(0):
@@ -127,7 +128,7 @@ void stage_3()
 			z--;
 			break;
 		case(1):
-			x=x++;
+			x=x+1;
 			z--;
 			break;
 		case(2):
@@ -141,7 +142,7 @@ void stage_3()
 			z--;
 			break;
 		case(6):
-			x=x--;
+			x=x-1;
 			z--;
 			break;
 		case(7):
@@ -310,7 +311,7 @@ int main(int argc, char **argv)
     arm_cmd.request.value = true;
 
     ros::Time last_request = ros::Time::now();
-	double delta_time = DELTA_TIME;
+
 
     while(ros::ok())
 	{
@@ -329,7 +330,7 @@ int main(int argc, char **argv)
                 if( arming_client.call(arm_cmd) && arm_cmd.response.success)
 				{
                     ROS_INFO("Vehicle armed");
-		    		is_armed = 1;
+					ROS_INFO("%d",id);
                 }
                 last_request = ros::Time::now();
             }
@@ -342,7 +343,7 @@ int main(int argc, char **argv)
 			case(1):
 				stage_1();
 				ROS_INFO("Stage1");
-				break;	ROS_INFO("%d",id);
+				break;	
 			case(2):
 				stage_2();
 				ROS_INFO("Stage2");

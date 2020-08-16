@@ -5,121 +5,226 @@
 #include <mavros_msgs/SetMode.h>
 #include <mavros_msgs/State.h>
 #include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <iostream>
+
+#define ID 		0
+
+//Strings
+#define STRING1 "/uav0/mavros/state"
+#define STRING2 "/uav0/mavros/setpoint_position/local"
+#define STRING3 "/uav0/mavros/cmd/arming"
+#define STRING4 "/uav0/mavros/set_mode"
+
+//Stage Parameters
+#define INITIAL_ALTITUDE	3
+#define DELTA_TIME			3.5
 
 float x,y,z,theta=0;
 int stage = 1;
-int id = 1;
+int id = ID;
 int agents = 8;
 int flag = 1;
 bool is_armed = 0;
 
+// //Prepare for circle
+// void stage_4()
+// {
+// 	switch(id)
+// 	{
+// 		case(0):
+// 			break;
+// 		case(1):
+// 			break;
+// 		case(2):
+// 			break;
+// 		case(3):
+// 			break;
+// 		case(4):
+// 			break;
+// 		case(5):
+// 			break;
+// 		case(6):
+// 			break;
+// 		case(7):
+// 			break;
+// 	}
+// }
 
+
+//From the ground to initial altitude
 void stage_1()
 {
-	if(!is_armed)
+	switch(id)
 	{
-		z = 3;
-		theta = 0;
+		case(0):
+			z=z+INITIAL_ALTITUDE;
+			//z=z+4;
+			break;
+		case(1):
+			z=z+INITIAL_ALTITUDE;
+			break;
+		case(2):
+			z=z+INITIAL_ALTITUDE;
+			break;
+		case(3):
+			z=z+INITIAL_ALTITUDE;
+			break;
+		case(4):
+			z=z+INITIAL_ALTITUDE;
+			break;
+		case(5):
+			z=z+INITIAL_ALTITUDE;
+			break;
+		case(6):
+			z=z+INITIAL_ALTITUDE;
+			break;
+		case(7):
+			z=z+INITIAL_ALTITUDE;
+			break;
 	}
-	//Timer
-	theta = theta + 0.08;
 }
 
+//Prepare for circle
 void stage_2()
 {
-	static bool init[2] = {0,0};
-	if(theta<=3.14 && init[0] == 0)
+	switch(id)
 	{
-		z=z+2;
-		init[0] = 1;
+		case(0):
+			z=z+4;
+			break;
+		case(1):
+			z=z+3;
+			break;
+		case(2):
+			z=z+2;
+			break;
+		case(3):
+			break;
+		case(4):
+			break;
+		case(5):
+			z=z+2;
+			break;
+		case(6):
+			z=z+3;
+			break;
+		case(7):
+			z=z+4;
+			break;
 	}
-	else if(theta > 3.14 && init[1] == 0)
-	{
-		x=x+1;
-		init[1] = 1;
-	}
-	//Timer
-	theta = theta + 0.08;
 }
 
+//Circle
 void stage_3()
 {
-
-	static bool init[8] = {0,0,0,0,0,0,0,0};
-	static bool is_done = 0;
-	if(is_done)
+	switch(id)
 	{
-		for(int i=0;i<=7;i++)
-		{
-			init[i] = 0;
-		}
-		is_done = 0;
-	}
-	if(theta > ((0+id)%(agents+1))*6.28/8 && theta<=((1+id)%(agents+1))*6.28/8 && init[0] == 0)
-	{
-		x=x+1;
-		init[0] = 1;
-	}
-	else if(theta > ((1+id)%(agents+1))*6.28/8 && theta <= ((2+id)%(agents+1))*6.28/8 && init[1] == 0)
-	{
-		x=x+1;
-		z=z-1;
-		init[1] = 1;
-	}
-	else if(theta > ((2+id)%(agents+1))*6.28/8 && theta <= ((3+id)%(agents+1))*6.28/8 && init[2] == 0)
-	{
-		z=z-1;
-		init[2] = 1;
-	}
-	else if(theta > ((3+id)%(agents+1))*6.28/8 && theta <= ((4+id)%(agents+1))*6.28/8 && init[3] == 0)
-	{
-		x=x-1;
-		z=z-1;
-		init[3] = 1;
-	}
-	else if(theta > ((4+id)%(agents+1))*6.28/8 && theta <= ((5+id)%(agents+1))*6.28/8 && init[4] == 0)
-	{
-		x=x-1;
-		init[4] = 1;
-	}
-	else if(theta > ((5+id)%(agents+1))*6.28/8 && theta <= ((6+id)%(agents+1))*6.28/8 && init[5] == 0)
-	{
-		x=x-1;
-		z++;
-		init[5] = 1;
-	}
-	else if(theta > ((6+id)%(agents+1))*6.28/8 && theta <= ((7+id)%(agents+1))*6.28/8 && init[6] == 0)
-	{
-		z++;
-		init[6] = 1;
-	}
-	else if(theta > ((7+id)%(agents+1))*6.28/8 && theta <= ((8+id)%(agents+1))*6.28/8 && init[7] == 0)
-	{
-		x++;
-		z++;
-		init[7] = 1;
-	}
-	//Timer
-	theta = theta + 0.01;
-	if(theta > 6.24)
-	{
-		is_done = 1;
+		case(0):
+			x=x+3;
+			z--;
+			break;
+		case(1):
+			x=x++;
+			z--;
+			break;
+		case(2):
+			z--;
+			break;
+		case(3):
+			break;
+		case(4):
+			break;
+		case(5):
+			z--;
+			break;
+		case(6):
+			x=x--;
+			z--;
+			break;
+		case(7):
+			x=x-3;
+			z--;
+			break;
 	}
 }
 
+//Prepare for flip
 void stage_4()
 {
-
+	switch(id)
+	{
+		case(0):
+			y=y-2;
+			z--;
+			break;
+		case(1):
+			y=y-1;
+			break;
+		case(2):
+			y=y+1;
+			break;
+		case(3):
+			y=y+2;
+			z=z+1;
+			break;
+		case(4):
+			y=y+2;
+			z=z+1;
+			break;
+		case(5):
+			y=y+1;
+			break;
+		case(6):
+			y=y-1;
+			break;
+		case(7):
+			y=y-2;
+			z--;
+			break;
+	}
 }
 
+//Flip
 void stage_5()
 {
-
-}
-
-void stage_6()
-{
-
+	switch(id)
+	{
+		case(0):
+			y=y+2;
+			z=z-2;
+			break;
+		case(1):
+			y++;
+			z--;
+			break;
+		case(2):
+			y--;
+			z++;
+			break;
+		case(3):
+			y=y-2;
+			z=z+2;
+			break;
+		case(4):
+			y=y-2;
+			z=z+2;
+			break;
+		case(5):
+			y--;
+			z++;
+			break;
+		case(6):
+			y++;
+			z--;
+			break;
+		case(7):
+			y=y+2;
+			z=z-2;
+			break;
+	}
 }
 
 mavros_msgs::State current_state;
@@ -132,27 +237,52 @@ void state_cb(const mavros_msgs::State::ConstPtr& msg)
 
 int main(int argc, char **argv)
 {
-
+	char buffer[64];
+	char b[32];
+	std::string a;
     ros::init(argc, argv, "offb_node");
+	a=ros::this_node::getName();
+	sprintf(b,"%s",a.c_str());
+    char c; 
+    int i,digit,number=0; 
+    for(i=0;i<strlen(b);i++) 
+    { 
+    	c = b[i]; 
+    	if(c>='0' && c<='9') //to confirm it's a digit 
+    	{ 
+    		digit = c - '0'; 
+    		number = number*10 + digit; 
+    	} 
+    } 
+	number--;
+	id=number;
 
     ros::NodeHandle nh;
 
+	sprintf(buffer,"%s",STRING1);
+	buffer[4]=id+'0';
     ros::Subscriber state_sub = nh.subscribe<mavros_msgs::State>
-            ("/uav1/mavros/state", 10, state_cb);
+            (buffer, 10, state_cb);
+	sprintf(buffer,"%s",STRING2);
+	buffer[4]=id+'0';
     ros::Publisher local_pos_pub = nh.advertise<geometry_msgs::PoseStamped>
-            ("/uav1/mavros/setpoint_position/local", 10);
+            (buffer, 10);
+	sprintf(buffer,"%s",STRING3);
+	buffer[4]=id+'0';
     ros::ServiceClient arming_client = nh.serviceClient<mavros_msgs::CommandBool>
-            ("/uav1/mavros/cmd/arming");
+            (buffer);
+	sprintf(buffer,"%s",STRING4);
+	buffer[4]=id+'0';
     ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>
-            ("/uav1/mavros/set_mode");
+            (buffer);
 
     
-
     //the setpoint publishing rate MUST be faster than 2Hz
     ros::Rate rate(20.0);
 
     // wait for FCU connection
-    while(ros::ok() && !current_state.connected){
+    while(ros::ok() && !current_state.connected)
+	{
         ros::spinOnce();
         rate.sleep();
     }
@@ -180,54 +310,65 @@ int main(int argc, char **argv)
     arm_cmd.request.value = true;
 
     ros::Time last_request = ros::Time::now();
+	double delta_time = DELTA_TIME;
 
-    while(ros::ok()){
-        if( current_state.mode != "OFFBOARD" &&
-            (ros::Time::now() - last_request > ros::Duration(5.0))){
-            if( set_mode_client.call(offb_set_mode) &&
-                offb_set_mode.response.mode_sent){
+    while(ros::ok())
+	{
+        if( current_state.mode != "OFFBOARD" && (ros::Time::now() - last_request > ros::Duration(5.0)))
+		{
+            if( set_mode_client.call(offb_set_mode) && offb_set_mode.response.mode_sent)
+			{
                 ROS_INFO("Offboard enabled");
             }
             last_request = ros::Time::now();
-        } else {
-            if( !current_state.armed &&
-                (ros::Time::now() - last_request > ros::Duration(5.0))){
-                if( arming_client.call(arm_cmd) &&
-                    arm_cmd.response.success){
+        } 
+		else 
+		{
+            if( !current_state.armed && (ros::Time::now() - last_request > ros::Duration(5.0)))
+			{
+                if( arming_client.call(arm_cmd) && arm_cmd.response.success)
+				{
                     ROS_INFO("Vehicle armed");
-		    is_armed = 1;
+		    		is_armed = 1;
                 }
                 last_request = ros::Time::now();
             }
         }
 	//Stage selector
-	switch(flag)
+	if (current_state.armed && (ros::Time::now() - last_request > ros::Duration(delta_time)))
 	{
-		case(1):
-			stage_1();
-			break;
-		case(2):
-			stage_2();
-			break;
-		case(3):
-			//stage_3();
-			break;
-		case(4):
-			//stage_3();
-			break;
-		default:
-			//stage_3();
-			break;
+		switch(flag)
+		{
+			case(1):
+				stage_1();
+				ROS_INFO("Stage1");
+				break;	ROS_INFO("%d",id);
+			case(2):
+				stage_2();
+				ROS_INFO("Stage2");
+				break;
+			case(3):
+				stage_3();
+				ROS_INFO("Stage3");
+				break;
+			case(4):
+				stage_4();
+				ROS_INFO("Stage4");
+				break;
+			case(5):
+				stage_5();
+				ROS_INFO("Stage5");
+				break;
+			default:
+				//stage_3();
+				ROS_INFO("def");
+				break;
 
-	}
-
-	if (theta>6.28)
-	{
-		theta = 0;
+		}
 		flag++;
 
+	last_request = ros::Time::now();
 	}
-
 	myQuaternion.setRPY( 0, 0, theta);
 	pose.pose.position.x = x;
 	pose.pose.position.y = y;
@@ -236,7 +377,6 @@ int main(int argc, char **argv)
 	//pose.pose.orientation.y = myQuaternion[1];
 	//pose.pose.orientation.z = myQuaternion[2];
 	//pose.pose.orientation.w = myQuaternion[3];
-
 
 	local_pos_pub.publish(pose);
 

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+    <node name="offb_1" pkg="mavros_basics" type="swarm_fly10_1" output="screen"/>
+    <node name="offb_2" pkg="mavros_basics" type="swarm_fly10_2" output="screen"/>
+    <node name="offb_3" pkg="mavros_basics" type="swarm_fly10_3" output="screen"/>
+    <node name="offb_4" pkg="mavros_basics" type="swarm_fly10_4" output="screen"/>
+    <node name="offb_5" pkg="mavros_basics" type="swarm_fly10_5" output="screen"/>
+    <node name="offb_6" pkg="mavros_basics" type="swarm_fly10_6" output="screen"/>
+    <node name="offb_7" pkg="mavros_basics" type="swarm_fly10_7" output="screen"/>
+    <node name="offb_8" pkg="mavros_basics" type="swarm_fly10_8" output="screen"/>
+    <node name="offb_9" pkg="mavros_basics" type="swarm_fly10_9" output="screen"/>
+    <node name="offb_10" pkg="mavros_basics" type="swarm_fly10_10" output="screen"/>
+</launch>

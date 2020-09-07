@@ -251,6 +251,36 @@ target_link_libraries(swarm_fly8_7 ${catkin_LIBRARIES})
 add_executable(swarm_fly8_8 src/swarm_fly_8/unit8.cpp)
 target_link_libraries(swarm_fly8_8 ${catkin_LIBRARIES})
 ########################################################
+##################Swarm Fly 10##########################
+add_executable(swarm_fly10_1 src/swarm_fly_10/unit1.cpp)
+target_link_libraries(swarm_fly10_1 ${catkin_LIBRARIES})
+
+add_executable(swarm_fly10_2 src/swarm_fly_10/unit2.cpp)
+target_link_libraries(swarm_fly10_2 ${catkin_LIBRARIES})
+
+add_executable(swarm_fly10_3 src/swarm_fly_10/unit3.cpp)
+target_link_libraries(swarm_fly10_3 ${catkin_LIBRARIES})
+
+add_executable(swarm_fly10_4 src/swarm_fly_10/unit4.cpp)
+target_link_libraries(swarm_fly10_4 ${catkin_LIBRARIES})
+
+add_executable(swarm_fly10_5 src/swarm_fly_10/unit5.cpp)
+target_link_libraries(swarm_fly10_5 ${catkin_LIBRARIES})
+
+add_executable(swarm_fly10_6 src/swarm_fly_10/unit6.cpp)
+target_link_libraries(swarm_fly10_6 ${catkin_LIBRARIES})
+
+add_executable(swarm_fly10_7 src/swarm_fly_10/unit7.cpp)
+target_link_libraries(swarm_fly10_7 ${catkin_LIBRARIES})
+
+add_executable(swarm_fly10_8 src/swarm_fly_10/unit8.cpp)
+target_link_libraries(swarm_fly10_8 ${catkin_LIBRARIES})
+
+add_executable(swarm_fly10_9 src/swarm_fly_10/unit9.cpp)
+target_link_libraries(swarm_fly10_9 ${catkin_LIBRARIES})
+
+add_executable(swarm_fly10_10 src/swarm_fly_10/unit10.cpp)
+target_link_libraries(swarm_fly10_10 ${catkin_LIBRARIES})
 
 
 

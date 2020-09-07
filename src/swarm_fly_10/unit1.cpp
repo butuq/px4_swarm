@@ -22,10 +22,10 @@
 #define INITIAL_ALTITUDE	5
 #define DELTA_TIME			3
 
-float x,y,z,theta=0;
+float x,y,z,theta=0,h,k,r;
 int stage = 1;
 int id = ID;
-int agents = 8;
+int agents = 10;
 int flag = 1;
 double delta_time = DELTA_TIME;
 
@@ -418,33 +418,63 @@ void stage_9()
 //Impact 3
 void stage_10()
 {
-	//delta_time = DELTA_TIME*1.07;
+	delta_time = DELTA_TIME*1.5;
+	r=5;
 	switch(id)
 	{
 		case(0):
-			x=x+2;
+			theta = 0*2*3.14/agents;
+			x=r*cos(theta);
+			y=r*sin(theta);
 			break;
 		case(1):
+			theta = 3*2*3.14/agents;
+			x=r*cos(theta);
+			y=r*sin(theta);
 			break;
 		case(2):
+			theta = 2*2*3.14/agents;
+			x=r*cos(theta);
+			y=r*sin(theta);
 			break;
 		case(3):
-			x=x+2;		
+			theta = 1*2*3.14/agents;
+			x=r*cos(theta);
+			y=r*sin(theta);		
 			break;
-		case(4):		
+		case(4):
+			theta = 7*2*3.14/agents;
+			x=r*cos(theta);
+			y=r*sin(theta);		
 			break;
 		case(5):	
+			theta = 8*2*3.14/agents;
+			x=r*cos(theta);
+			y=r*sin(theta);
 			break;
 		case(6):
-			x=x+2;
+			theta = 9*2*3.14/agents;
+			x=r*cos(theta);
+			y=r*sin(theta);
 			break;
 		case(7):
+			theta = 4*2*3.14/agents;
+			x=r*cos(theta);
+			y=r*sin(theta);
 			break;
 		case(8):
+			theta = 5*2*3.14/agents;
+			x=r*cos(theta);
+			y=r*sin(theta);
 			break;
 		case(9):
+			theta = 6*2*3.14/agents;
+			x=r*cos(theta);
+			y=r*sin(theta);
 			break;
 	}
+	x=x+h-id;
+	y=y+k;
 }
 
 
@@ -618,15 +648,15 @@ int main(int argc, char **argv)
 				ROS_INFO("Stage7");
 				break;
 			case(8):
-				//stage_8();
+				stage_8();
 				ROS_INFO("Stage5");
 				break;
 			case(9):
-				//stage_9();
+				stage_9();
 				ROS_INFO("Stage3");
 				break;
 			case(10):
-				//stage_10();
+				stage_10();
 				ROS_INFO("Stage4");
 				break;
 			case(11):
